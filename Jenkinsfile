@@ -31,7 +31,7 @@ pipeline {
 
     post {
     always {
-        emailext(
+        
             subject: "Jenkins Build ${currentBuild.currentResult}: ${env.JOB_NAME}",
             body: """
 Build Status: ${currentBuild.currentResult}
@@ -41,7 +41,7 @@ Build Number: ${env.BUILD_NUMBER}
 Build URL: ${env.BUILD_URL}
 """,
             to: "keyworkmail2@gmail.com"
-        )
+        
     }
 }
 }

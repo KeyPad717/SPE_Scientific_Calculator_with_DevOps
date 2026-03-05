@@ -4,10 +4,10 @@ pipeline {
     stages {
 
         stage('Clone Repository') {
-            steps {
-                git 'https://github.com/KeyPad717/SPE_Scientific_Calculator_with_DevOps'
-            }
-        }
+    steps {
+        git branch: 'main', url: 'https://github.com/KeyPad717/SPE_Scientific_Calculator_with_DevOps.git'
+    }
+}
 
         stage('Install Dependencies') {
             steps {

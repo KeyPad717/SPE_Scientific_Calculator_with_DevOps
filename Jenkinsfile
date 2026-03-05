@@ -30,6 +30,13 @@ pipeline {
     }
 
     post {
+        success {
+            emailext(
+                subject: "Build Failed: ${env.JOB_NAME}",
+                body: "Build ${env.BUILD_NUMBER} failed. Check ${env.BUILD_URL}",
+                to: "keyworkmail2@gmail.com"
+            )
+        }
 
         failure {
             emailext(

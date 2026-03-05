@@ -29,19 +29,16 @@ pipeline {
 
     }
 
-    post {
-    always {
-        
-            subject: "Jenkins Build ${currentBuild.currentResult}: ${env.JOB_NAME}",
-            body: """
-Build Status: ${currentBuild.currentResult}
-
-Job: ${env.JOB_NAME}
-Build Number: ${env.BUILD_NUMBER}
-Build URL: ${env.BUILD_URL}
-""",
-            to: "keyworkmail2@gmail.com"
-        
+   post {
+        success {
+            mail to: "keyworkmail2@gmail.com",
+                 subject: "SUCCESS: Calculator Pipeline Update",
+                 body: "The latest push to GitHub was successfully built and deployed. Check console output: ${env.BUILD_URL}"
+        }
+        failure {
+            mail to: "keyworkmail2@gmail.com",
+                 subject: "FAILURE: Calculator Pipeline Update",
+                 body: "The pipeline failed. Please check the console output to debug: ${env.BUILD_URL}"
+        }
     }
-}
 }

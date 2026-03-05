@@ -1,0 +1,37 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Clone Repository') {
+            steps {
+                git 'https://github.com/KeyPad717/SPE_Scientific_Calculator_with_DevOps.git'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'pip install -r requirements.txt'
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                sh 'python3 -m pytest tests/'
+            }
+        }
+
+    }
+
+    post {
+
+        failure {
+            emailext(
+                subject: "Build Failed: ${env.JOB_NAME}",
+                body: "Build ${env.BUILD_NUMBER} failed. Check ${env.BUILD_URL}",
+                to: "keyworkmail2@gmail.com"
+            )
+        }
+
+    }
+}

@@ -37,6 +37,11 @@ pipeline {
                 sh 'docker push key717/scientific-calculator:latest'
             }
         }
+        stage('Deploy with Ansible') {
+    steps {
+        sh 'ansible-playbook -i ansible/inventory ansible/deploy.yml'
+    }
+}
 
     }
 

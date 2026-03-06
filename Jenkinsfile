@@ -26,6 +26,17 @@ pipeline {
                 sh 'python3 -m pytest tests/'
             }
         }
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t key717/scientific-calculator:latest .'
+            }
+        }
+
+        stage('Push Docker Image') {
+            steps {
+                sh 'docker push key717/scientific-calculator:latest'
+            }
+        }
 
     }
 

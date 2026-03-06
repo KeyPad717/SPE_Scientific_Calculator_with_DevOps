@@ -1,0 +1,11 @@
+- hosts: localhost
+  become: true
+
+  tasks:
+    - name: Pull latest Docker image
+      docker_container:
+        name: scientific-calculator
+        image: key717/scientific-calculator:latest
+        state: started
+        recreate: true
+        tty: true

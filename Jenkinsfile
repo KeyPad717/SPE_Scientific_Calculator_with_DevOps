@@ -26,11 +26,12 @@ pipeline {
                 sh 'python3 -m pytest tests/'
             }
         }
-        stage('Build Docker Image') {
-            steps {
-                sh 'docker build -t key717/scientific-calculator:latest .'
-            }
-        }
+        sh """
+docker build -t key717/scientific-calculator:${BUILD_NUMBER} .
+docker tag key717/scientific-calculator:${BUILD_NUMBER} key717/scientific-calculator:latest
+docker push key717/scientific-calculator:${BUILD_NUMBER}
+docker push key717/scientific-calculator:latest
+"""
 
         stage('Push Docker Image') {
             steps {

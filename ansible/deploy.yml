@@ -1,10 +1,17 @@
-- hosts: localhost
+- name: Deploy Calculator Container
+  hosts: local
 
   tasks:
+    - name: Stop old container
+      command: docker stop scientific-calculator
+      ignore_errors: yes
+
+    - name: Remove old container
+      command: docker rm scientific-calculator
+      ignore_errors: yes
+
     - name: Pull latest Docker image
-      docker_container:
-        name: scientific-calculator
-        image: key717/scientific-calculator:latest
-        state: started
-        recreate: true
-        tty: true
+      command: docker pull key717/scientific-calculator:latest
+
+    - name: Run calculator container
+      command: docker run -d --name scientific-calculator key717/scientific-calculator:latest

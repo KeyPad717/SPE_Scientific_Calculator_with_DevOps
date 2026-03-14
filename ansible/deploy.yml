@@ -14,4 +14,4 @@
       command: docker pull key717/scientific-calculator:latest
 
     - name: Run calculator container
-      command: docker run -d --name scientific-calculator key717/scientific-calculator:latest
+      command: docker run -d -it --name scientific-calculator key717/scientific-calculator:latest

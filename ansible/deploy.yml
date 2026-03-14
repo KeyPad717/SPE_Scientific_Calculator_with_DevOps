@@ -1,5 +1,6 @@
 - name: Deploy Calculator Container
-  hosts: local
+  hosts: localhost
+  connection: local
 
   tasks:
     - name: Stop old container

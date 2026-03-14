@@ -1,6 +1,6 @@
 from calculator.operations import *
 import math
-
+#comment
 def isNumber(x):
 
     if x.count('.') <= 1:

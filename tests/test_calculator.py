@@ -20,7 +20,7 @@ def test_factorial():
 
 def test_ln():
     assert round(ln(1),5) == 0
-
+#ttr
 def test_power():
     assert power(2,3) == 8
 
